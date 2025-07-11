@@ -5,12 +5,12 @@ function clearErrors() {
     feedback.removeAttribute('class');
 }
 
-function hideFeedback(){
+function hideFeedback() {
     feedback.classList.add('hidden')
     feedback.classList.remove('visible')
 }
 
-function showFeedback(){
+function showFeedback() {
     feedback.classList.remove('hidden')
     feedback.classList.add('visible')
 }
@@ -27,8 +27,6 @@ form.addEventListener('submit', function (event) {
     const formData = new FormData(form);
 
     clearErrors()
-    showFeedback()
-
 
     fetch(form.action, {
         method: form.method,
@@ -47,5 +45,7 @@ form.addEventListener('submit', function (event) {
         .catch(error => {
             feedback.classList.add('feedback-error')
             feedback.innerText = "Network error."
-        });
+        }).finally(() => {
+            showFeedback()
+        })
 })
