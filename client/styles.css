@@ -1,0 +1,127 @@
+:root {
+    --background: #1F2421;
+    --primary: #7EA172;
+    --secondary: #63B4D1;
+
+    --white: #FFFFFF;
+
+    --success: #8FBC8F;
+    --error: #A63446;
+}
+
+html,
+body,
+main {
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--white);
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.header-title {
+    font-family: "Borel", cursive;
+    position: fixed;
+    left: 1.0rem;
+    top: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-style: italic;
+}
+
+#form {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(80vw, 600px);
+    height: min(50vh, 400px);
+}
+
+label {
+    visibility: visible;
+    opacity: 1;
+}
+
+#message-label {
+    color: var(--primary);
+    font-weight: bold;
+    position: absolute;
+    right: 1.0rem;
+    top: 1.0rem;
+    transition:
+        transform 0.5s,
+        opacity 0.25s,
+        visibility 0.25s;
+}
+
+textarea:not(:placeholder-shown)~label {
+    transform: translateY(-25px);
+    visibility: hidden;
+    opacity: 0;
+}
+
+#message-input {
+    resize: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.0rem;
+    padding: 1.0rem;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+
+button[type=submit] {
+    position: absolute;
+    right: 1.0rem;
+    bottom: 1.0rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.25s;
+    background-color: var(--primary);
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+}
+
+button[type=submit]:hover {
+    background-color: var(--secondary);
+}
+
+#feedback {
+    transition: all 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.feedback-success {
+    display: block !important;
+    color: var(--success)
+}
+
+.feedback-error {
+    display: block !important;
+    color: var(--error)
+}

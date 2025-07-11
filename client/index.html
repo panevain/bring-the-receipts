@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bring the Receipts</title>
+    <meta name="description" content="">
+    <meta name="author" content="Matthew Newcomer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&family=Figtree&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1 class="header-title">Bring the Receipts</h1>
+    </header>
+
+    <main>
+        <form id="form" action="/submit-message" method="post">
+            <textarea id="message-input" name="message" placeholder=" " required minlength="1" maxlength="255"
+                autocorrect="on"></textarea>
+            <label for="message" id="message-label">Message</label>
+            <button type="submit" id="form-submit">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <p id="feedback"></p>
+        </form>
+    </main>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>
