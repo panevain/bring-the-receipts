@@ -4,6 +4,7 @@
     --secondary: #63B4D1;
 
     --white: #FFFFFF;
+    --black: #000000;
 
     --success: #8FBC8F;
     --error: #A63446;
@@ -62,6 +63,14 @@ label {
         visibility 0.25s;
 }
 
+#message-length-feedback {
+    color: var(--black);
+    font-weight: bold;
+    position: absolute;
+    left: 1.0rem;
+    bottom: 1.0rem;
+}
+
 textarea:not(:placeholder-shown)~label {
     transform: translateY(-25px);
     visibility: hidden;
@@ -72,10 +81,12 @@ textarea:not(:placeholder-shown)~label {
     resize: none;
     width: 100%;
     height: 100%;
-    border-radius: 1.0rem;
+    border-radius: 1.5rem;
     padding: 1.0rem;
     font-size: 1.6rem;
     line-height: 1.6;
+    outline: none;
+    box-shadow: 0 0 20px 2px var(--primary);
 }
 
 
