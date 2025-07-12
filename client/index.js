@@ -38,6 +38,11 @@ form.addEventListener('submit', function (event) {
     const form = event.target;
     const formData = new FormData(form);
 
+    const now = new Date();
+    formData.append('datetime', now.toISOString());
+    const timeZoneIANA = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    formData.append('timezone', timeZoneIANA)
+
     clearErrors()
 
     fetch(form.action, {
@@ -59,6 +64,7 @@ form.addEventListener('submit', function (event) {
             feedback.textContent = "Network error."
         }).finally(() => {
             showFeedback()
+            updateLengthFeedback()
         })
 })
 
