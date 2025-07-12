@@ -15,5 +15,9 @@
     ],
     "theme_color": "#7EA172",
     "background_color": "#7EA172",
-    "display": "standalone"
+    "display": "standalone",
+    "lang": "en",
+    "scope": "/",
+    "start_url": "/",
+    "id": "BRING_THE_RECEIPTS"
 }
