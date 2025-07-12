@@ -54,7 +54,7 @@ def process_messages():
 
         try:
             print(
-                f'STORED LOG: {text} at {format_utc_to_local_time(message["datetime"], message['timezone'])}')
+                f'STORED LOG: {text} at {format_utc_to_local_time(message["datetime"], message["timezone"])}')
         except:
             print('Unparseable data.')
 
