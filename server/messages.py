@@ -42,6 +42,7 @@ def log_message(message: str, datetime: str, timezone: str):
 
 def process_messages():
     if not os.path.exists(message_filename):
+        print(f'{message_filename} does not exist. Aborting.')
         return
 
     messages = []
@@ -54,7 +55,7 @@ def process_messages():
 
         try:
             print(
-                f'STORED LOG: {text} at {format_utc_to_local_time(message["datetime"], message["timezone"])}')
+                f'Stored log: {text} at {format_utc_to_local_time(message["datetime"], message["timezone"])}')
         except:
             print('Unparseable data.')
 
