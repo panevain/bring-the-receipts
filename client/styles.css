@@ -34,6 +34,7 @@ body {
     top: 1.5rem;
     padding: 0.5rem 1rem;
     font-style: italic;
+    font-size: calc(4vw + 4vh + 2vmin);
 }
 
 #form {
@@ -89,6 +90,8 @@ textarea:not(:placeholder-shown)~label {
 
     border-radius: 1.5rem;
     border: 2px solid var(--primary);
+
+    padding-bottom: calc(40px + 2rem);
 }
 
 
