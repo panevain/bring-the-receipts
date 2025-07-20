@@ -30,11 +30,12 @@ body {
 .header-title {
     font-family: "Borel", cursive;
     position: fixed;
-    left: 1.0rem;
-    top: 1.5rem;
+    left: calc(var(--size)/3);
+    top: calc(var(--size)/2);
     padding: 0.5rem 1rem;
     font-style: italic;
-    font-size: calc(4vw + 4vh + 2vmin);
+    font-size: var(--size);
+    --size: calc(2vw + 2vh + 1vmin);
 }
 
 #form {
