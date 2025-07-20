@@ -71,6 +71,7 @@ def process_messages():
         printer.textln("No messages.")
 
     printer.cut()
+    printer.close()
 
     if os.path.exists(message_filename):
         os.remove(message_filename)
