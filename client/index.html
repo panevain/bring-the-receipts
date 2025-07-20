@@ -31,8 +31,10 @@
 
     <main>
         <form id="form" action="/submit" method="post">
-            <textarea id="message-input" name="message" placeholder=" " required minlength="1" maxlength="255"
-                autocorrect="on"></textarea>
+            <div id="message-input-wrapper">
+                <textarea id="message-input" name="message" placeholder=" " required minlength="1" maxlength="255"
+                    autocorrect="on"></textarea>
+            </div>
             <label for="message" id="message-label">Message</label>
             <p id="message-length-feedback"></p>
             <button type="submit" id="form-submit">
