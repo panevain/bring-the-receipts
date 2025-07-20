@@ -2,6 +2,7 @@ from datetime import datetime
 import json
 import os
 import zoneinfo
+from escpos.printer import Usb
 
 message_filename = 'messages.txt'
 
@@ -20,7 +21,7 @@ def format_utc_to_local_time(utc_iso_string: str, iana_timezone: str) -> str:
         utc_dt = datetime.fromisoformat(utc_iso_string)
         target_tz = zoneinfo.ZoneInfo(iana_timezone)
         local_dt = utc_dt.astimezone(target_tz)
-        return local_dt.strftime("%-I:%M %p (%Z)")
+        return local_dt.strftime("%-m/%-d %-I:%M %p %Z")
 
     except zoneinfo.ZoneInfoNotFoundError:
         return f"Error: Timezone '{iana_timezone}' not found."
@@ -41,23 +42,35 @@ def log_message(message: str, datetime: str, timezone: str):
 
 
 def process_messages():
-    if not os.path.exists(message_filename):
-        print(f'{message_filename} does not exist. Aborting.')
-        return
+    printer = Usb(0x0fe6, 0x811e, 0)
+    printer.set(align='center',
+                bold=True,
+                double_height=True,
+                double_width=True,
+                invert=True)
+    printer.textln("Notes")
+    printer.ln(count=3)
 
     messages = []
-    with open(message_filename, 'r') as file:
-        for line_num, line in enumerate(file, 1):
-            messages.append(json.loads(line))
 
-    for message in messages:
-        text = message["text"]
+    printer.set_with_default()
+    if os.path.exists(message_filename):
+        with open(message_filename, 'r') as file:
+            for line_num, line in enumerate(file, 1):
+                messages.append(json.loads(line))
 
-        try:
-            print(
-                f'Stored log: {text} at {format_utc_to_local_time(message["datetime"], message["timezone"])}')
-        except:
-            print('Unparseable data.')
+    if len(messages) > 0:
+        for message in messages:
+            try:
+                log = f'{format_utc_to_local_time(message["datetime"], message["timezone"])}: {message["text"]}'
+                printer.textln(log)
+                printer.ln(count=1)
+            except:
+                print('Unparseable data.')
+    else:
+        printer.textln("No messages.")
+
+    printer.cut()
 
     if os.path.exists(message_filename):
         os.remove(message_filename)
