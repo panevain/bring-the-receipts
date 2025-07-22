@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Annotated
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from messages import log_message, process_messages
+from messages import log_message, process_messages, inspirational_quote
 
 app = FastAPI()
 
@@ -46,4 +46,5 @@ app.mount("/", StaticFiles(directory="../client", html=True), name="static")
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(process_messages, trigger='cron', hour=6, minute=30)
+scheduler.add_job(inspirational_quote, trigger='cron', hour=18, minute=0)
 scheduler.start()

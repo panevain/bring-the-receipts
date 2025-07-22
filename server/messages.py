@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import os
+import requests
 import zoneinfo
 from escpos.printer import Usb
 
@@ -41,8 +42,12 @@ def log_message(message: str, datetime: str, timezone: str):
         file.write(f'{json.dumps(dict)}\n')
 
 
+def init_printer():
+    return Usb(0x0fe6, 0x811e, 0)
+
+
 def process_messages():
-    printer = Usb(0x0fe6, 0x811e, 0)
+    printer = init_printer()
     printer.set(align='center',
                 bold=True,
                 double_height=True,
@@ -75,3 +80,19 @@ def process_messages():
 
     if os.path.exists(message_filename):
         os.remove(message_filename)
+
+
+def inspirational_quote():
+    printer = init_printer()
+
+    r = requests.get('https://zenquotes.io/api?api=random')
+    if r.status_code == requests.codes.ok:
+        [data] = r.json()
+        quote = data["q"]
+        author = data["a"]
+
+        printer.textln(quote)
+        printer.textln(f'- {author}')
+        printer.cut()
+
+    printer.close()
